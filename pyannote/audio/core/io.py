@@ -36,6 +36,7 @@ from typing import Mapping, Optional, Text, Tuple, Union
 
 import numpy as np
 import torch.nn.functional as F
+import torch
 import torchaudio
 from pyannote.core import Segment
 from torch import Tensor
@@ -249,6 +250,7 @@ class Audio:
             )
             sample_rate = self.sample_rate
 
+        waveform = waveform.to(torch.float16)
         return waveform, sample_rate
 
     def get_duration(self, file: AudioFile) -> float:
